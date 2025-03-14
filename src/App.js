@@ -14,7 +14,7 @@ function App() {
       <Navbar />
       <div className="container mt-4">
         <Routes>
-          <Route path="/" element={<Appointment/>} />
+          <Route path="Home" element={<Appointment/>} />
           {/* <Route path="/" element={<Appointment/>}/> */}
           {/* <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
