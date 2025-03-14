@@ -50,7 +50,7 @@
 
 .appointmentPage {
     background-color: #ffffff26;
-    padding: 20px;
+    padding: 30px;
     border-radius: 15px;
     box-shadow: 0 0 10px 0px #adb5bd;
     .newAppointment {
@@ -82,5 +82,26 @@
     .btn{
         margin-top: 10px;
         width: -webkit-fill-available;
+        transition: 0.5s all;
+        padding: 10px 10px;
+        font-weight: bold;
+        &:hover{
+            transform: scale(1.01);
+            transition: 0.5s all;
+        }
+    }
+}
+
+.back-btn{
+    width: fit-content;
+    padding: 8px 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 7px 0 #c7c7c7;
+    transition: 0.5s all;
+    &:hover{
+        background-color: #000;
+        color: #ffffff;
+        transition: 0.5s all;
+        transform: scale(1.1);
     }
 }

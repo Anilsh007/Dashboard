@@ -1,9 +1,35 @@
+import React from "react"
+
 function PatientList() {
     return (
-        <div>
-            <h2>Patient List</h2>
-            <p>This is the page displaying the list of patients.</p>
-        </div>
+        <>
+            <table className="table table-hover table-bordered">
+                <thead className="table-dark">
+                    <tr>
+                        <th>Token</th>
+                        <th>First name</th>
+                        <th>Phone Number</th>
+                        <th>Date of Birth</th>
+                        <th>Gender</th>
+                        <th>Disease</th>
+                        <th>Doctor</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                        <td>John</td>
+                        <td>Doe</td>
+                    </tr>
+                </tbody>
+            </table>
+        </>
     );
 }
 

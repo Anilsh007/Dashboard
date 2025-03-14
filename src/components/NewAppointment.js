@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 
 function NewAppointment() {
     const [fname, setName] = useState('');
@@ -8,10 +10,11 @@ function NewAppointment() {
     const [disease, setDisease] = useState('Select');
     const [doctor, setDoctor] = useState('Select');
     const [address, setAddress] = useState('');
+    const [tokenNumber, setTokenNumber] = useState(0); // Token state
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        switch(name) {
+        switch (name) {
             case 'name':
                 setName(value);
                 break;
@@ -38,18 +41,27 @@ function NewAppointment() {
         }
     };
 
-    const fromValidation = () => {
-        if (fname === "") {
-            console.log("Full name is required");
-            // You could display an error message to the user here
+    const formValidation = () => {
+        if (fname.trim() === "") {
+            toast.error("Full name is required!");
+            return false;
+        }
+        if (phoneNumber.trim() === "") {
+            toast.error("Phone number is required!");
             return false;
         }
         return true;
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault(); // Prevents the default form submission behavior
-        if (fromValidation()) {
+        e.preventDefault(); 
+
+        if (formValidation()) {
+            const newTokenNumber = tokenNumber + 1; // Store incremented token
+            setTokenNumber(newTokenNumber); // Update state
+
+            toast.success(`Appointment submitted successfully! Token Number: ${newTokenNumber}`);
+
             console.log({
                 fname,
                 phoneNumber,
@@ -57,16 +69,28 @@ function NewAppointment() {
                 gender,
                 disease,
                 doctor,
-                address
+                address,
+                tokenNumber: newTokenNumber
             });
+
+            // Clear form fields after submission
+            setName('');
+            setPhoneNumber('');
+            setDob('');
+            setGender('');
+            setDisease('Select');
+            setDoctor('Select');
+            setAddress('');
         }
-    }
+    };
 
     return (
         <div className='appointmentPage'>
+            <ToastContainer position="top-right" autoClose={3000} hideProgressBar closeOnClick />
+
             <div className='d-flex justify-content-between align-items-end'>
                 <h2>New Appointment</h2>
-                <h6>Token Number : <span className='badge bg-danger'>00</span></h6>
+                <h6>Token Number: <span className='badge bg-danger'>{tokenNumber}</span></h6>
             </div>
 
             <form onSubmit={handleSubmit}>
@@ -82,7 +106,7 @@ function NewAppointment() {
                     </div>
 
                     <div className="col-sm-6">
-                        <p className="form-control-label">Date of Birth<span className="text-danger">*</span></p>
+                        <p className="form-control-label">Date of Birth</p>
                         <input type="date" name="dob" value={dob} placeholder="Enter your date of birth" onChange={handleChange} />
                     </div>
 
@@ -99,7 +123,7 @@ function NewAppointment() {
                     </div>
 
                     <div className="col-sm-6">
-                        <p className="form-control-label">Disease<span className="text-danger">*</span></p>
+                        <p className="form-control-label">Disease</p>
                         <select name="disease" value={disease} onChange={handleChange}>
                             <option disabled>Select</option>
                             <option value="A">A</option>
@@ -110,7 +134,7 @@ function NewAppointment() {
                     </div>
 
                     <div className="col-sm-6">
-                        <p className="form-control-label">Doctor<span className="text-danger">*</span></p>
+                        <p className="form-control-label">Doctor</p>
                         <select name="doctor" value={doctor} onChange={handleChange}>
                             <option disabled>Select</option>
                             <option value="A">A</option>

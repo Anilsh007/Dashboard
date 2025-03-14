@@ -44,7 +44,7 @@ function Appointment() {
                     ))}
                 </div>
             ) : (
-                <div className="back-btn mt-3" onClick={handleBackClick} style={{ cursor: 'pointer', fontWeight: 'bold' }}>
+                <div className="back-btn" onClick={handleBackClick} style={{ cursor: 'pointer', fontWeight: 'bold' }}>
                     Back
                 </div>
             )}
