@@ -1,39 +1,40 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 
 function NewAppointment() {
-    const [fname, setName] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [dob, setDob] = useState('');
-    const [gender, setGender] = useState('');
-    const [disease, setDisease] = useState('Select');
-    const [doctor, setDoctor] = useState('Select');
-    const [address, setAddress] = useState('');
-    const [tokenNumber, setTokenNumber] = useState(0); // Token state
+    const [Name, setName] = useState('');
+    const [Phone, setPhone] = useState('');
+    const [Age, setage] = useState('');
+    const [Gender, setGender] = useState('');
+    const [Disease, setDisease] = useState('Select');
+    const [Doctor, setDoctor] = useState('Select');
+    const [Address, setAddress] = useState('');
+    const [Token, setTokenNumber] = useState(0); // Token state
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         switch (name) {
-            case 'name':
+            case 'Name':
                 setName(value);
                 break;
-            case 'phone':
-                setPhoneNumber(value);
+            case 'Phone':
+                setPhone(value);
                 break;
-            case 'dob':
-                setDob(value);
+            case 'Age':
+                setage(value);
                 break;
-            case 'address':
+            case 'Address':
                 setAddress(value);
                 break;
-            case 'gender':
+            case 'Gender':
                 setGender(value);
                 break;
-            case 'disease':
+            case 'Disease':
                 setDisease(value);
                 break;
-            case 'doctor':
+            case 'Doctor':
                 setDoctor(value);
                 break;
             default:
@@ -42,11 +43,11 @@ function NewAppointment() {
     };
 
     const formValidation = () => {
-        if (fname.trim() === "") {
+        if (Name.trim() === "") {
             toast.error("Full name is required!");
             return false;
         }
-        if (phoneNumber.trim() === "") {
+        if (Phone.trim() === "") {
             toast.error("Phone number is required!");
             return false;
         }
@@ -54,35 +55,51 @@ function NewAppointment() {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault(); 
-
+        e.preventDefault();
+    
         if (formValidation()) {
-            const newTokenNumber = tokenNumber + 1; // Store incremented token
-            setTokenNumber(newTokenNumber); // Update state
-
-            toast.success(`Appointment submitted successfully! Token Number: ${newTokenNumber}`);
-
-            console.log({
-                fname,
-                phoneNumber,
-                dob,
-                gender,
-                disease,
-                doctor,
-                address,
-                tokenNumber: newTokenNumber
+            const newTokenNumber = Token + 1;
+    
+            axios.post('/api/student_details', {
+                Name,
+                Phone,
+                Age,
+                Gender,
+                Disease,
+                Doctor,
+                Address,
+                Token: newTokenNumber
+            })
+            .then(() => {
+                setTokenNumber(newTokenNumber);
+                toast.success(`Appointment submitted successfully! Token Number: ${newTokenNumber}`);
+                console.log({
+                    Name,
+                    Phone,
+                    Age,
+                    Gender,
+                    Disease,
+                    Doctor,
+                    Address,
+                    Token: newTokenNumber
+                });
+    
+                // Clear form
+                setName('');
+                setPhone('');
+                setage('');
+                setGender('');
+                setDisease('Select');
+                setDoctor('Select');
+                setAddress('');
+            })
+            .catch((err) => {
+                console.error("❌ Axios error:", err);
+                toast.error("Failed to submit appointment. Try again.");
             });
-
-            // Clear form fields after submission
-            setName('');
-            setPhoneNumber('');
-            setDob('');
-            setGender('');
-            setDisease('Select');
-            setDoctor('Select');
-            setAddress('');
         }
     };
+    
 
     return (
         <div className='appointmentPage'>
@@ -90,42 +107,42 @@ function NewAppointment() {
 
             <div className='d-flex justify-content-between align-items-end'>
                 <h2>New Appointment</h2>
-                <h6>Token Number: <span className='badge bg-danger'>{tokenNumber}</span></h6>
+                <h6>Token Number: <span className='badge bg-danger'>{Token}</span></h6>
             </div>
 
             <form onSubmit={handleSubmit}>
                 <div className="row newAppointment">
                     <div className="col-sm-6">
                         <p className="form-control-label">Full Name<span className="text-danger">*</span></p>
-                        <input type="text" name="name" value={fname} placeholder="Enter your full name" onChange={handleChange} />
+                        <input type="text" name="Name" value={Name} placeholder="Enter your full name" onChange={handleChange} />
                     </div>
 
                     <div className="col-sm-6">
                         <p className="form-control-label">Phone Number<span className="text-danger">*</span></p>
-                        <input type="text" name="phone" value={phoneNumber} placeholder="Enter your phone number" onChange={handleChange} />
+                        <input type="tel" name="Phone" value={Phone} placeholder="Enter your phone number" onChange={handleChange} />
                     </div>
 
                     <div className="col-sm-6">
                         <p className="form-control-label">Date of Birth</p>
-                        <input type="date" name="dob" value={dob} placeholder="Enter your date of birth" onChange={handleChange} />
+                        <input type="number" name="Age" value={Age} placeholder="Enter your date of birth" onChange={handleChange} />
                     </div>
 
                     <div className="col-sm-6">
                         <p className="form-control-label">Gender</p>
                         <span>
                             <label htmlFor="Male">Male</label>
-                            <input type="radio" id="Male" name="gender" value="Male" checked={gender === 'Male'} onChange={handleChange} />
+                            <input type="radio" id="Male" name="Gender" value="Male" checked={Gender === 'Male'} onChange={handleChange} />
                         </span>
                         <span>
                             <label htmlFor="Female">Female</label>
-                            <input type="radio" id="Female" name="gender" value="Female" checked={gender === 'Female'} onChange={handleChange} />
+                            <input type="radio" id="Female" name="Gender" value="Female" checked={Gender === 'Female'} onChange={handleChange} />
                         </span>
                     </div>
 
                     <div className="col-sm-6">
                         <p className="form-control-label">Disease</p>
-                        <select name="disease" value={disease} onChange={handleChange}>
-                            <option disabled>Select</option>
+                        <select name="Disease" value={Disease} onChange={handleChange}>
+                        <option value="" disabled>Select</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
@@ -135,8 +152,8 @@ function NewAppointment() {
 
                     <div className="col-sm-6">
                         <p className="form-control-label">Doctor</p>
-                        <select name="doctor" value={doctor} onChange={handleChange}>
-                            <option disabled>Select</option>
+                        <select name="Doctor" value={Doctor} onChange={handleChange}>
+                        <option value="" disabled>Select</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
@@ -146,7 +163,7 @@ function NewAppointment() {
 
                     <div className="col-sm-12">
                         <p className="form-control-label">Address</p>
-                        <input type="text" name="address" value={address} placeholder="Enter your Address" onChange={handleChange} />
+                        <input type="text" name="Address" value={Address} placeholder="Enter your Address" onChange={handleChange} />
                     </div>
 
                 </div>

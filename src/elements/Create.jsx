@@ -5,7 +5,6 @@ import {Link, useNavigate} from 'react-router-dom'
 function Create() {
     const [values, setValues] = useState({
         name: '',
-        email: '',
         age: '',
         gender: ''
     })
@@ -34,10 +33,6 @@ function Create() {
                 <div className='form-group my-3'>
                     <label htmlFor='name'>Name</label>
                     <input type='text' name='name' required onChange={(e)=> setValues({...values, name: e.target.value})} />
-                </div>
-                <div className='form-group my-3'>
-                    <label htmlFor='email'>Email</label>
-                    <input type='email' name='email' required onChange={(e)=> setValues({...values, email: e.target.value})} />
                 </div>
                 <div className='form-group my-3'>
                     <label htmlFor='gender'>Gender</label>

@@ -15,11 +15,10 @@ function App() {
       <div className="container mt-4">
         <Routes>
           <Route path="/" element={<Appointment/>} />
-          {/* <Route path="/" element={<Appointment/>}/> */}
-          {/* <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/create" element={<Create />} />
           <Route path="/edit/:id" element={<Edit />} />
-          <Route path="/read/:id" element={<Read />} /> */}
+          <Route path="/read/:id" element={<Read />} />
         </Routes>
       </div>
     </BrowserRouter>
