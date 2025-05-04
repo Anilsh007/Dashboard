@@ -1,17 +1,30 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
+import { jsPDF } from "jspdf";
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 
 function NewAppointment() {
     const [Name, setName] = useState('');
     const [Phone, setPhone] = useState('');
-    const [Age, setage] = useState('');
+    const [Age, setAge] = useState('');
     const [Gender, setGender] = useState('');
     const [Disease, setDisease] = useState('Select');
     const [Doctor, setDoctor] = useState('Select');
     const [Address, setAddress] = useState('');
     const [Token, setTokenNumber] = useState(0); // Token state
+    const [AppointmentDate, setAppointmentDate] = useState(''); // State to store current date
+
+    // Get current date
+    const currentDate = new Date().toLocaleDateString();
+
+    // Reset the token if the date has changed
+    useEffect(() => {
+        if (AppointmentDate !== currentDate) {
+            setTokenNumber(0); // Reset token number when date changes
+            setAppointmentDate(currentDate); // Update the appointment date
+        }
+    }, [currentDate, AppointmentDate]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,7 +36,7 @@ function NewAppointment() {
                 setPhone(value);
                 break;
             case 'Age':
-                setage(value);
+                setAge(value);
                 break;
             case 'Address':
                 setAddress(value);
@@ -54,6 +67,29 @@ function NewAppointment() {
         return true;
     };
 
+    const generatePDF = (data) => {
+        const doc = new jsPDF();
+    
+        doc.setFontSize(18);
+        doc.text("Appointment Details", 20, 20);
+    
+        doc.setFontSize(12);
+        doc.text(`Date: ${data.AppointmentDate}`, 20, 30); // Include the date in the PDF
+        doc.text(`Name: ${data.Name}`, 20, 40);
+        doc.text(`Phone: ${data.Phone}`, 20, 50);
+        doc.text(`Age: ${data.Age}`, 20, 60);
+        doc.text(`Gender: ${data.Gender}`, 20, 70);
+        doc.text(`Disease: ${data.Disease}`, 20, 80);
+        doc.text(`Doctor: ${data.Doctor}`, 20, 90);
+        doc.text(`Address: ${data.Address}`, 20, 100);
+        doc.text(`Token Number: ${data.Token}`, 20, 110);
+    
+        // Instead of save(), open print preview
+        doc.autoPrint();
+        window.open(doc.output('bloburl'));
+    };
+    
+
     const handleSubmit = (e) => {
         e.preventDefault();
     
@@ -68,12 +104,13 @@ function NewAppointment() {
                 Disease,
                 Doctor,
                 Address,
-                Token: newTokenNumber
+                Token: newTokenNumber,
+                AppointmentDate // Include the current date in the API request
             })
             .then(() => {
-                setTokenNumber(newTokenNumber);
+                setTokenNumber(newTokenNumber); // Update token number
                 toast.success(`Appointment submitted successfully! Token Number: ${newTokenNumber}`);
-                console.log({
+                generatePDF({
                     Name,
                     Phone,
                     Age,
@@ -81,13 +118,14 @@ function NewAppointment() {
                     Disease,
                     Doctor,
                     Address,
-                    Token: newTokenNumber
+                    Token: newTokenNumber,
+                    AppointmentDate // Pass the date to the PDF
                 });
-    
+
                 // Clear form
                 setName('');
                 setPhone('');
-                setage('');
+                setAge('');
                 setGender('');
                 setDisease('Select');
                 setDoctor('Select');
@@ -99,35 +137,35 @@ function NewAppointment() {
             });
         }
     };
-    
 
     return (
         <div className='appointmentPage'>
-            <ToastContainer position="top-right" autoClose={3000} hideProgressBar closeOnClick />
+            <ToastContainer position="top-right" autoClose={3000} hideProgressBar closeOnClick /> 
 
-            <div className='d-flex justify-content-between align-items-end'>
+            <div className='d-flex justify-content-between align-items-end flex-wrap mb-5'>
                 <h2>New Appointment</h2>
+                <h6>Date: <span className='badge bg-primary'>{AppointmentDate}</span></h6> {/* Display current date */}
                 <h6>Token Number: <span className='badge bg-danger'>{Token}</span></h6>
             </div>
 
             <form onSubmit={handleSubmit}>
                 <div className="row newAppointment">
-                    <div className="col-sm-6">
+                    <div className="col-sm-12 col-md-4">
                         <p className="form-control-label">Full Name<span className="text-danger">*</span></p>
                         <input type="text" name="Name" value={Name} placeholder="Enter your full name" onChange={handleChange} />
                     </div>
 
-                    <div className="col-sm-6">
+                    <div className="col-sm-12 col-md-4">
                         <p className="form-control-label">Phone Number<span className="text-danger">*</span></p>
                         <input type="tel" name="Phone" value={Phone} placeholder="Enter your phone number" onChange={handleChange} />
                     </div>
 
-                    <div className="col-sm-6">
-                        <p className="form-control-label">Date of Birth</p>
+                    <div className="col-sm-12 col-md-4">
+                        <p className="form-control-label">Age</p>
                         <input type="number" name="Age" value={Age} placeholder="Enter your date of birth" onChange={handleChange} />
                     </div>
 
-                    <div className="col-sm-6">
+                    <div className="col-sm-12 col-md-4">
                         <p className="form-control-label">Gender</p>
                         <span>
                             <label htmlFor="Male">Male</label>
@@ -139,10 +177,10 @@ function NewAppointment() {
                         </span>
                     </div>
 
-                    <div className="col-sm-6">
+                    <div className="col-sm-12 col-md-4">
                         <p className="form-control-label">Disease</p>
                         <select name="Disease" value={Disease} onChange={handleChange}>
-                        <option value="" disabled>Select</option>
+                            <option value="" disabled>Select</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
@@ -150,10 +188,10 @@ function NewAppointment() {
                         </select>
                     </div>
 
-                    <div className="col-sm-6">
+                    <div className="col-sm-12 col-md-4">
                         <p className="form-control-label">Doctor</p>
                         <select name="Doctor" value={Doctor} onChange={handleChange}>
-                        <option value="" disabled>Select</option>
+                            <option value="" disabled>Select</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>

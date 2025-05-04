@@ -1,0 +1,38 @@
+@media screen and (max-width: 768px) {
+    .sidebar-container {
+        height: 100vh;
+  
+      &.collapsed {
+        width: 100%;
+      }
+  
+      ul {
+  
+        li {
+          flex: 1;
+  
+          a {
+            justify-content: center;
+  
+            svg {
+              margin-right: 0;
+            }
+  
+            span {
+              display: none;
+            }
+          }
+        }
+      }
+  
+    }
+  
+    .main-layout {
+      flex-direction: column;
+  
+      .outlet-container {
+        margin-left: 0;
+      }
+    }
+  }
+  

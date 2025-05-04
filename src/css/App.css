@@ -1,24 +1,3 @@
-.navbar {
-    padding: 0 !important;
-    background: #000306;
-    color: #ffffff;
-
-    .nav-link {
-        padding: 15px 10px !important;
-        color: #ffffff !important;
-    }
-
-    .nav-link.active,
-    .nav-link:hover {
-        font-weight: bold;
-        background-color: #0066cc;
-    }
-
-    .navbar-toggler {
-        color: #ffffff !important;
-    }
-}
-
 /* Add this to your CSS file */
 .appoint_div {
     width: 250px;
@@ -27,7 +6,7 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    background-color: #495057ba;
+    background-color: #8e98a2ba;
     border-radius: 5px;
     cursor: pointer;
     justify-content: center;
@@ -46,15 +25,17 @@
     background-color: #0066cc;
     transition: 0.3s;
     transform: scale(1.05);
+    color: #ffffff;
 }
 
 .appointmentPage {
-    background-color: #ffffff26;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px 0px #adb5bd;
+
+    
+
     .newAppointment {
-        .col-sm-6,.col-sm-12 {
+
+        .col-sm-4,
+        .col-sm-12 {
             margin-bottom: 20px;
 
             p {
@@ -79,26 +60,29 @@
             }
         }
     }
-    .btn{
+
+    .btn {
         margin-top: 10px;
         width: -webkit-fill-available;
         transition: 0.5s all;
         padding: 10px 10px;
         font-weight: bold;
-        &:hover{
+
+        &:hover {
             transform: scale(1.01);
             transition: 0.5s all;
         }
     }
 }
 
-.back-btn{
+.back-btn {
     width: fit-content;
     padding: 8px 30px;
     border-radius: 5px;
     box-shadow: 0 0 7px 0 #c7c7c7;
     transition: 0.5s all;
-    &:hover{
+
+    &:hover {
         background-color: #000;
         color: #ffffff;
         transition: 0.5s all;
