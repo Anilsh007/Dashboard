@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/MyHospital/static/css/main.71851b98.css",
-    "main.js": "/MyHospital/static/js/main.33c99068.js",
+    "main.js": "/MyHospital/static/js/main.bd8f9427.js",
     "static/js/498.08e1e2c8.chunk.js": "/MyHospital/static/js/498.08e1e2c8.chunk.js",
     "static/js/404.c22e64a4.chunk.js": "/MyHospital/static/js/404.c22e64a4.chunk.js",
     "static/js/258.385e36ac.chunk.js": "/MyHospital/static/js/258.385e36ac.chunk.js",
@@ -11,7 +11,7 @@
     "static/media/login.svg": "/MyHospital/static/media/login.a663fcb3abd79c0db17fbc10baac3f7b.svg",
     "index.html": "/MyHospital/index.html",
     "main.71851b98.css.map": "/MyHospital/static/css/main.71851b98.css.map",
-    "main.33c99068.js.map": "/MyHospital/static/js/main.33c99068.js.map",
+    "main.bd8f9427.js.map": "/MyHospital/static/js/main.bd8f9427.js.map",
     "498.08e1e2c8.chunk.js.map": "/MyHospital/static/js/498.08e1e2c8.chunk.js.map",
     "404.c22e64a4.chunk.js.map": "/MyHospital/static/js/404.c22e64a4.chunk.js.map",
     "258.385e36ac.chunk.js.map": "/MyHospital/static/js/258.385e36ac.chunk.js.map",
@@ -19,6 +19,6 @@
   },
   "entrypoints": [
     "static/css/main.71851b98.css",
-    "static/js/main.33c99068.js"
+    "static/js/main.bd8f9427.js"
   ]
 }
