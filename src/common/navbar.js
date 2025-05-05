@@ -25,7 +25,6 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                                     <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                         <li><Link className="dropdown-item">Profile</Link></li>
                                         <li><Link className="dropdown-item">Settings</Link></li>
-                                        <li><hr className="dropdown-divider" /></li>
                                         <li><Link className="dropdown-item text-danger" onClick={handleLogout}>Logout</Link></li>
                                     </ul>
                                 </div>
