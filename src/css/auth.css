@@ -108,6 +108,7 @@
     justify-content: space-around;
     align-items: center;
     height: 100vh;
+    flex-wrap: wrap;
 
     div {
         img {
