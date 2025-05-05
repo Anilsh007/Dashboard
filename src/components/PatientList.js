@@ -47,7 +47,7 @@ function PatientList() {
     };
 
     return (
-        <>
+        <div className="table-responsive">
             <table className="table table-hover table-bordered">
                 <thead className="table-dark">
                     <tr>
@@ -91,7 +91,7 @@ function PatientList() {
                     )}
                 </tbody>
             </table>
-        </>
+        </div>
     );
 }
 

@@ -142,7 +142,7 @@ function NewAppointment() {
         <div className='appointmentPage'>
             <ToastContainer position="top-right" autoClose={3000} hideProgressBar closeOnClick /> 
 
-            <div className='d-flex justify-content-between align-items-end flex-wrap mb-5'>
+            <div className='d-flex justify-content-between align-items-end flex-wrap mb-5 border-bottom'>
                 <h2>New Appointment</h2>
                 <h6>Date: <span className='badge bg-primary'>{AppointmentDate}</span></h6> {/* Display current date */}
                 <h6>Token Number: <span className='badge bg-danger'>{Token}</span></h6>
