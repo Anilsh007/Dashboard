@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/MyHospital/static/css/main.71851b98.css",
+    "main.css": "/MyHospital/static/css/main.1859b687.css",
     "main.js": "/MyHospital/static/js/main.bd8f9427.js",
     "static/js/498.08e1e2c8.chunk.js": "/MyHospital/static/js/498.08e1e2c8.chunk.js",
     "static/js/404.c22e64a4.chunk.js": "/MyHospital/static/js/404.c22e64a4.chunk.js",
@@ -10,7 +10,7 @@
     "static/media/logo2.png": "/MyHospital/static/media/logo2.f22ef0f8a60be0d7742c.png",
     "static/media/login.svg": "/MyHospital/static/media/login.a663fcb3abd79c0db17fbc10baac3f7b.svg",
     "index.html": "/MyHospital/index.html",
-    "main.71851b98.css.map": "/MyHospital/static/css/main.71851b98.css.map",
+    "main.1859b687.css.map": "/MyHospital/static/css/main.1859b687.css.map",
     "main.bd8f9427.js.map": "/MyHospital/static/js/main.bd8f9427.js.map",
     "498.08e1e2c8.chunk.js.map": "/MyHospital/static/js/498.08e1e2c8.chunk.js.map",
     "404.c22e64a4.chunk.js.map": "/MyHospital/static/js/404.c22e64a4.chunk.js.map",
@@ -18,7 +18,7 @@
     "787.c4e7f8f9.chunk.js.map": "/MyHospital/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.71851b98.css",
+    "static/css/main.1859b687.css",
     "static/js/main.bd8f9427.js"
   ]
 }
